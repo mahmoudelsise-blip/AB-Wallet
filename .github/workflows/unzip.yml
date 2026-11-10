@@ -14,9 +14,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AB_WALLET_TOKEN }}
+          persist-credentials: true
 
       - name: Extract project files
         run: |
+          set -e
           test -f AB-Wallet-Android.zip
           mkdir -p _abwallet_extract
           unzip -o AB-Wallet-Android.zip -d _abwallet_extract
